@@ -21,9 +21,7 @@ pub struct Undelegate<'info> {
 }
 
 impl<'info> Undelegate<'info> {
-    pub fn Undelegate(&mut self, new_data: u8) -> Result<()> {
-        self.user_account_pda.random_number = new_data;
-
+    pub fn undelegate(&mut self) -> Result<()> {
         commit_and_undelegate_accounts(
             &self.user.to_account_info(),
             vec![&self.user_account_pda.to_account_info()],

@@ -13,6 +13,7 @@ declare_id!("DeKyCagVzospP15FxRjwavBPzzwuNHfSCEij1dCPUoXi");
 
 #[program]
 pub mod magicblock_vrf {
+
     use super::*;
 
     pub fn initialize_user(ctx: Context<InitializeUser>) -> Result<()> {
@@ -25,5 +26,20 @@ pub mod magicblock_vrf {
 
     pub fn close_user(ctx : Context<CloseUser>)-> Result<()>{
         ctx.accounts.close_user()
+    }
+    pub fn delegate(ctx: Context<Delegate>) -> Result<()> {
+        ctx.accounts.delegate()?;
+        
+        Ok(())
+    }
+
+    pub fn undelegate(ctx: Context<Undelegate>) -> Result<()> {
+        ctx.accounts.undelegate()?;
+        
+        Ok(())
+    }
+
+    pub fn consume_randomness(ctx : Context<ConsumeRandomness>, randomness : [u8;32])-> Result<()>{
+        ctx.accounts.consume_randomness(randomness)
     }
 }
